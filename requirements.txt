@@ -1,0 +1,6 @@
+flask
+openrouter
+requests
+python-dotenv
+uuid
+sqlite3
