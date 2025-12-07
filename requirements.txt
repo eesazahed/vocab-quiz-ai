@@ -1,6 +1,7 @@
-flask
+Flask
 openrouter
 requests
 python-dotenv
 uuid
 sqlite3
+gunicorn
