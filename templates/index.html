@@ -12,112 +12,32 @@ content %}
   </div>
 
   <button id="generate-btn">Generate Vocab Quiz</button>
-  <p id="loading-text" style="display: none; font-size: 1.5rem; margin: 2rem 0">
-    Loading...
-  </p>
+
+  <div
+    id="loading-container"
+    style="display: none; text-align: center; margin: 3rem 0"
+  >
+    <img
+      src="{{ url_for('static', filename='loading.gif') }}"
+      alt="Loading..."
+      height="100"
+    />
+  </div>
 
   <div id="quiz-container" style="display: none">
     <h2>Drag words from the word bank to the correct definition</h2>
     <div id="word-bank" class="word-bank"></div>
     <div class="matching-container"></div>
     <button id="check-btn">Check Answers</button>
-    <button id="save-btn" style="margin-left: 1rem">Save Quiz</button>
+    <button id="save-btn" style="margin-left: 1rem">Copy Link</button>
     <p id="share-link" style="margin-top: 1rem"></p>
     <p id="result"></p>
   </div>
 </div>
 
+<script>
+  window.preloadedQuiz = {{ preloaded_quiz|tojson|safe }};
+</script>
 <script src="{{ url_for('static', filename='main.js') }}"></script>
-
-<script>
-  // eslint-disable
-  {% if (preloaded_quiz) %}
-    try {
-      const preloadedData = {{ preloaded_quiz|tojson }};
-      window.vocab = typeof preloadedData === "string"
-        ? JSON.parse(preloadedData)
-        : preloadedData;
-
-      document.getElementById("quiz-container").style.display = "block";
-      window.initVocabQuiz();
-
-      document.querySelector("#notes-text").closest("div").style.display = "none";
-      document.getElementById("generate-btn").style.display = "none";
-      document.getElementById("save-btn").style.display = "none";
-
-    } catch(e) {
-      console.error("Failed to load preloaded quiz:", e);
-    }
-  {% endif %}
-</script>
-
-<script>
-  document
-    .getElementById("generate-btn")
-    .addEventListener("click", async () => {
-      const notes = document.getElementById("notes-text").value.trim();
-      if (!notes) return alert("Please paste your notes.");
-
-      const loadingText = document.getElementById("loading-text");
-      loadingText.style.display = "block";
-
-      try {
-        const res = await fetch("/vocab", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ notes_text: notes }),
-        });
-
-        const data = await res.json();
-
-        if (res.ok) {
-          window.vocab = data.vocab;
-          document.getElementById("quiz-container").style.display = "block";
-          window.initVocabQuiz();
-
-          // Hide notes input and generate button
-          document.querySelector("#notes-text").closest("div").style.display =
-            "none";
-          document.getElementById("generate-btn").style.display = "none";
-        } else {
-          alert(data.error || "Error generating vocab.");
-        }
-      } catch (err) {
-        alert("Network error: " + err.message);
-      } finally {
-        loadingText.style.display = "none";
-      }
-    });
-
-  // Save quiz and generate shareable link
-  document.getElementById("save-btn").addEventListener("click", async () => {
-    if (!window.vocab) return alert("No quiz to save.");
-
-    const saveBtn = document.getElementById("save-btn");
-
-    try {
-      const res = await fetch("/save_quiz", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ quiz: window.vocab }),
-      });
-
-      const data = await res.json();
-      if (res.ok && data.quiz_id) {
-        const link = `${window.location.origin}/quiz/${data.quiz_id}`;
-        document.getElementById(
-          "share-link"
-        ).innerHTML = `Share your quiz: <a href="${link}" target="_blank">${link}</a>`;
-
-        saveBtn.textContent = "Saved!";
-        saveBtn.disabled = true;
-      } else {
-        alert(data.error || "Failed to save quiz");
-      }
-    } catch (err) {
-      alert("Network error: " + err.message);
-    }
-  });
-</script>
 
 {% endblock %}
