@@ -90,8 +90,8 @@ def vocab():
     return jsonify({"vocab": parsed})
 
 
-@app.route("/save_quiz", methods=["POST"])
-def save_quiz():
+# @app.route("/save_quiz", methods=["POST"])
+# def save_quiz():
     data = request.get_json()
     quiz = data.get("quiz")
     if not quiz:

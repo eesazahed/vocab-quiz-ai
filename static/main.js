@@ -195,6 +195,7 @@ const setupEventListeners = () => {
       }
     });
 
+  /*
   document.getElementById("save-btn").addEventListener("click", async () => {
     if (!window.vocab) return alert("No quiz to save.");
     const saveBtn = document.getElementById("save-btn");
@@ -220,7 +221,7 @@ const setupEventListeners = () => {
     } catch (err) {
       alert("Network error: " + err.message);
     }
-  });
+  });*/
 };
 
 document.addEventListener("DOMContentLoaded", () => {
