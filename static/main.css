@@ -1,14 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 body {
   margin: 0rem 0rem 6rem 0rem;
   padding: 2rem;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Inter", sans-serif;
   background: white;
   color: #1a1a1a;
   text-align: center;
 }
 
 header h1 {
-  margin: 8rem 0 4rem 0;
+  margin: 8rem 0 2rem 0;
   font-size: 5rem;
 }
 
@@ -37,17 +39,17 @@ h2 {
 button {
   margin: 2.5rem 1.5rem;
   padding: 1.25rem 2rem;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   border-radius: 1rem;
   border: none;
-  background: #306ccb;
+  background: #427cd9;
   color: white;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.1s;
 }
 
 button:hover {
-  background: #1d1aba;
+  background: #0f6ac0;
 }
 
 .word-bank {
@@ -141,4 +143,18 @@ button:hover {
 #result {
   font-size: 1.5rem;
   margin-top: 1.25rem;
+}
+
+#my-link {
+  font-size: 1.5rem;
+}
+
+#my-link a {
+  text-decoration: none;
+  color: #13a913;
+}
+
+#my-link a:hover {
+  text-decoration: underline;
+  color: green;
 }
