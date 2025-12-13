@@ -16,11 +16,6 @@ header {
   padding: 2rem 3rem;
 }
 
-nav {
-  display: flex;
-  gap: 1rem;
-}
-
 main {
   background-color: #befeff;
   padding: 2rem 3rem;

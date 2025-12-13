@@ -9,7 +9,7 @@
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
       crossorigin="anonymous"
     />
-    <title>{% block title %}Movies App{% endblock %}</title>
+    <title>{% block title %}imlockedin.app (lite){% endblock %}</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
@@ -18,19 +18,7 @@
   <body>
     <div class="container">
       <header>
-        <h1>Movies App</h1>
-        <nav>
-          <a
-            class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-            href="{{ url_for('index') }}"
-            >Home</a
-          >
-          <a
-            class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-            href="{{ url_for('add') }}"
-            >Add Movie</a
-          >
-        </nav>
+        <h1>imlockedin.app</h1>
       </header>
 
       <main>{% block content %}{% endblock %}</main>
