@@ -1,5 +1,32 @@
-{% extends "base.html" %} {% block title %}homepage{% endblock %} {% block
-content %}
-<h2 class="mb-4">hi</h2>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vocab Quiz</title>
+    <link rel="stylesheet" href="/static/main.css" />
+    <link
+      rel="shortcut icon"
+      href="https://emoji.aranja.com/emojis/apple/1f4dd.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <h1>Vocab Quiz Generator</h1>
 
-{% endblock %}
+      <div id="input-section">
+        <textarea id="notes" placeholder="Paste notes here"></textarea>
+        <button id="generate">Generate!</button>
+      </div>
+
+      <div id="status" hidden>Loading...</div>
+      <div id="quiz" hidden></div>
+    </div>
+
+    <p style="text-align: center; margin: 4rem">
+      by <a href="https://eesa.zahed.ca" target="_blank">eesa z.</a>
+    </p>
+
+    <script src="/static/main.js"></script>
+  </body>
+</html>
