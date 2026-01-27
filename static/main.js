@@ -14,6 +14,15 @@ generateBtn.onclick = async () => {
   inputSection.hidden = true;
   statusEl.hidden = false;
 
+  let dots = 0;
+  const minDots = 0;
+  const maxDots = 6;
+
+  setInterval(() => {
+    statusEl.textContent = "Loading" + ".".repeat(dots);
+    dots = dots < maxDots ? dots + 1 : minDots;
+  }, 200);
+
   const res = await fetch("/vocab", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
